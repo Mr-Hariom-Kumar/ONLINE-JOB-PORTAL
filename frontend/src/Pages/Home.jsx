@@ -74,7 +74,7 @@ const Home = () => {
           ELECTRICAL
         </p>
       </div>
-      Nothing extra. Just exactly what you asked.
+   
       <div>
         {token ? (
           <DisplayJob />
