@@ -1,0 +1,18 @@
+@import "tailwindcss";
+body{
+    background-color: gainsboro;
+}
+.active hr{
+    @apply block
+}
+
+.active .side{
+    background-color: #D97706;
+    color: white;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+.active jobPopup{
+    @apply block
+}
