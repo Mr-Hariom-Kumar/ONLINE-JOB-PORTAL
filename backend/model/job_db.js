@@ -12,7 +12,7 @@ export const  createTableJob= async () =>{
     hr_mail VARCHAR(150) NOT NULL,
     hr_phone VARCHAR(15) NOT NULL,
     salary DECIMAL(10,2) NOT NULL,
-    domain ENUM('IT', 'Electrical', 'Mechanical', 'Civil', 'Finance', 'Law') NOT NULL,
+    domain ENUM('it', 'electrical', 'mechanical', 'civil', 'finance', 'law') NOT NULL,
     typeOf ENUM('permanent', 'intern') NOT NULL DEFAULT 'permanent',
     imageLogo VARCHAR(150) NOT NULL,
     company_name VARCHAR(200) NOT NULL,

@@ -9,7 +9,7 @@ const AppContextProvider = (props) => {
   const [token, setToken] = useState(localStorage.getItem('token') || false)
   const [jobs, setJobs] = useState([])
   const [savedJobs,setSavedJobs]=useState([])
-  const backendURL = import.meta.env.VITE_BACKEND_URL
+  const backendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5174'
 
   const getJobData = async () => {
     try {
@@ -30,7 +30,13 @@ const AppContextProvider = (props) => {
 
   const getSavedJobs=async ()=>{
     try{
-      const {data}=await axios.post(backendURL+'/user/savedJob')
+        if (!token) {
+    console.log("getSavedJobs: no token, skipping call");
+    setSavedJobs([]); 
+    return;
+        }
+
+      const {data}=await axios.post(backendURL+'/user/savedJob',{},{headers:{token}})
       if(data.success){
         setSavedJobs(data.data)
       }
@@ -41,7 +47,7 @@ const AppContextProvider = (props) => {
   }
   useEffect(()=>{
     getSavedJobs()
-  },[])
+  },[token])
   useEffect(() => {
     if (token) {
       localStorage.setItem('token', token)
@@ -69,7 +75,8 @@ const AppContextProvider = (props) => {
     setJobs,
     savedJobs,
     setSavedJobs,
-    getSavedJobs
+    getSavedJobs,
+    backendURL
   }
 
   return (

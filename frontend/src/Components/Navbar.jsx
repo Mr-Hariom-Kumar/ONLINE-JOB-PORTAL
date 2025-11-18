@@ -10,7 +10,7 @@ const Navbar = () => {
     <>
     
     <div className='flex justify-between py-6 px-8 bg-gray-900 w-screen max-sm:w-screen text-white max-sm:font-medium max-sm:py-6 fixed z-100'>
-      <div>Logo</div>
+      <div className='border rounded-full px-3 py-2 bg-blue-600 font-bold'>JP</div>
       <ul className='flex gap-7 max-sm:gap-4 max-sm:hidden'>
         <NavLink to='/'>
           <li className='text-md font-medium'>Home</li>

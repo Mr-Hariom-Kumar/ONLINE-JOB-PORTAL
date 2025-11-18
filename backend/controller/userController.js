@@ -243,16 +243,61 @@ const displayJob=async (req,res)=>{
     });
 }
 }
-const getSavedJob=async (req,res)=>{
-  try{
-    const [savedJob]=await pool.query("SELECT * FROM savedjobs")
+
+
+
+
+
+const getSavedJob = async (req, res) => {
+  try {
+    const { uid } = req.body;
+    console.log('Fetching saved jobs for uid:', uid);
+
+    if (!uid) {
+      return res.status(401).json({ 
+        success: false, 
+        message: "User not authenticated" 
+      });
+    }
+
+    // JOIN savedJobs with jobs table to get complete job details
+    const query = `
+      SELECT 
+        sj.*,
+        j.title,
+        j.location,
+        j.posting_date,
+        j.deadLine,
+        j.status,
+        j.hr_mail,
+        j.hr_phone,
+        j.salary,
+        j.domain,
+        j.typeOf,
+        j.imageLogo,
+        j.company_name,
+        j.description,
+        j.skillsRequired,
+        j.education,
+        j.role,
+        j.details
+      FROM savedJobs sj
+      INNER JOIN jobs j ON sj.jid = j.jid
+      WHERE sj.uid = ?
+      ORDER BY sj.applied_at DESC
+    `;
+
+    const [savedJob] = await pool.query(query, [uid]);
+    
+    console.log(`Found ${savedJob.length} saved jobs for user ${uid}`);
+    
     res.status(200).json({
       success: true,
       count: savedJob.length,
       data: savedJob
     });
     
-  }catch(error){
+  } catch (error) {
     console.error('Error fetching savedjobs:', error);
     res.status(500).json({
       success: false,
@@ -260,8 +305,7 @@ const getSavedJob=async (req,res)=>{
       error: error.message
     });
   }
-  
-}
+};
 // const viewSavedJobs= async (req,res)=>{
 
 // }

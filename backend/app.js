@@ -11,14 +11,7 @@ import "dotenv/config"
 const port=process.env.PORT || 4000
 const app = express();
 
-app.use(cors({
-  origin: [
-      'https://online-job-portal-6plg.onrender.com',
-      'http://localhost:5173',  // For local development
-      'http://localhost:4000'
-  ],
-  credentials: true
-}))
+app.use(cors())
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))

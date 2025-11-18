@@ -7,7 +7,7 @@ export const createTableUser= async()=> {
       username VARCHAR(150)  NOT NULL,
       email VARCHAR(100) NOT NULL,
       password VARCHAR(100) NOT NULL,
-      phone VARCHAR(150) NOT NULL
+      phone VARCHAR(150) NOT NULL,
     );
   `;
   await pool.query(query);
