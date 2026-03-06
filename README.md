@@ -1,4 +1,4 @@
-<<Intro>>
+<<Intro >>
 A Full Stack job hunting platform built using Express, NodeJS ,React , cloudinary  and MySQL database.
 Role based login and authorization (used JWT and bcrypt) for recruiters, Admin and  job seeker.
 
