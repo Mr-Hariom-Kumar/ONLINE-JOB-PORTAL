@@ -27,9 +27,7 @@ based on that a recruiter can make their independetn decisions and which will be
 
 
 
-
- [ Based opn filter ]
-<<Database Schema>>
+[Database Schema]
 A user have 1 to many relationship with jobs.means a user can apply for many jobs but with diffreent mail and phone numbers.
 each jobs and users  have  their individual and unique jobid and  userid respectively. 
 each job which has been applied by a user will have unique job applied id which will help to keep tracking the job status (whether selected or rejected).
